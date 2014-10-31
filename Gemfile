@@ -37,6 +37,10 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem "font-awesome-rails"
+
 ruby "2.1.2"
 
 # Use ActiveModel has_secure_password
