@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031121422) do
+ActiveRecord::Schema.define(version: 20141031175137) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -27,6 +27,23 @@ ActiveRecord::Schema.define(version: 20141031121422) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+
+  create_table "addresses", force: true do |t|
+    t.integer  "customer_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "street_address"
+    t.string   "suite"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "addresses", ["customer_id"], name: "index_addresses_on_customer_id"
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -63,6 +80,27 @@ ActiveRecord::Schema.define(version: 20141031121422) do
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true
   add_index "customers", ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+
+  create_table "preferences", force: true do |t|
+    t.integer  "subscription_id"
+    t.integer  "track_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "preferences", ["subscription_id"], name: "index_preferences_on_subscription_id"
+  add_index "preferences", ["track_id"], name: "index_preferences_on_track_id"
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "customer_id"
+    t.text     "lunch"
+    t.text     "dinner"
+    t.string   "upcoming_meal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscriptions", ["customer_id"], name: "index_subscriptions_on_customer_id"
 
   create_table "tracks", force: true do |t|
     t.string   "name"
