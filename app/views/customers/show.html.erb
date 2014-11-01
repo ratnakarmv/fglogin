@@ -121,7 +121,12 @@
             <% if @dinners.blank? %> <em>None ordered</em>
             <% else %><%= @dinners %>
             <% end %>
-          
+        </p>
+
+        <p> Upcoming meal:
+            <% if @subscription.upcoming_meal.blank? %> <em>Undetermined yet</em>
+            <% else %><%= @subscription.upcoming_meal %>
+            <% end %>
         </p>
     <% else %>
     <em>No subscription data</em>
@@ -129,7 +134,7 @@
 
     <h3> Your contact info </h3> 
     <% if @address %>
-      <%= "#{@address.first_name} #{@address.last_name}" %><br>
+      <%= "#{@address.first_name} #{@address.last_name}" %><br><br>
       <%= "#{@address.phone} - #{@address.email}" %><br>
       <%= "#{@address.street_address}, #{@address.suite}" %><br>
       <%= "#{@address.city}, #{@address.state} #{@address.zip}" %>
