@@ -132,12 +132,14 @@
     <em>No subscription data</em>
     <% end %>
 
-    <h3> Your contact info </h3> 
+    <h3> Delivery address </h3> 
     <% if @address %>
       <%= "#{@address.first_name} #{@address.last_name}" %><br><br>
       <%= "#{@address.phone} - #{@address.email}" %><br>
       <%= "#{@address.street_address}, #{@address.suite}" %><br>
-      <%= "#{@address.city}, #{@address.state} #{@address.zip}" %>
+      <%= "#{@address.city}, #{@address.state} #{@address.zip}" %><br>
     <% end %>
+
+    <%= link_to "Edit address", edit_address_path(@address) %>
   </div>
 </div>
