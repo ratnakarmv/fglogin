@@ -4,6 +4,30 @@
     <p> 
       Welcome, <%= @customer.email %> ! 
       <%= button_to "Logout", destroy_customer_session_path, {method: :delete, class: "btn btn-danger pull-right"} %>
-    </p> 
+    </p>
+    <h3> Your subscription </h3>
+    <p> Preferred tracks: 
+      <% @preferences.each do |pref| %>
+        <%= pref.track %>,
+      <% end %>
+    </p>
+    <p> lunches: 
+        <% if @lunches.blank? %> <em>None ordered</em>
+        <% else %><%= @lunches %>
+        <% end %>
+      
+    </p>
+
+    <p> dinners: 
+        <% if @dinners.blank? %> <em>None ordered</em>
+        <% else %><%= @dinners %>
+        <% end %>
+      
+    </p>
+
+    <h3> Your contact info </h3> 
+    <% if @address %>
+      <%= "#{@address.first_name} #{@address.last_name}" %>
+    <% end %>
   </div>
 </div>

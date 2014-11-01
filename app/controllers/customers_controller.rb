@@ -3,5 +3,12 @@ class CustomersController < ApplicationController
   def show
     @customer = current_customer
 
+    @subscription = @customer.subscription
+    @preferences = @subscription.preferences
+    @lunches = @subscription.lunch
+    @dinner = @subscription.dinner
+    
+    @address = @customer.address
+
   end
 end
