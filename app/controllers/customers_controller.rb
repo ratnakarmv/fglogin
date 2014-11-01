@@ -4,9 +4,11 @@ class CustomersController < ApplicationController
     @customer = current_customer
 
     @subscription = @customer.subscription
-    @preferences = @subscription.preferences
-    @lunches = @subscription.lunch
-    @dinner = @subscription.dinner
+    if @subscription
+      @preferences = @subscription.preferences
+      @lunches = @subscription.lunch
+      @dinner = @subscription.dinner
+    end
     
     @address = @customer.address
 
