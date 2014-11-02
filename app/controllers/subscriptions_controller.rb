@@ -4,6 +4,10 @@ class SubscriptionsController < ApplicationController
 
   def edit
     @subscription = current_customer.subscription
+    @lunches = @subscription.lunch
+    @lunches = [] unless @lunches
+    @dinners = @subscription.dinner
+    @dinners = [] unless @dinners
     @tracks = Track.all
     @preferences = Preference.where(subscription: @subscription)
     @days = DAYS
@@ -21,6 +25,10 @@ class SubscriptionsController < ApplicationController
       unless @pref_track_names.include?(oldie.track.name)
         oldie.destroy
       end
+
+    subscription.lunch = params[:lunch]
+    subscription.dinner = params[:dinner]
+    subscription.save
     end
 
 
@@ -35,7 +43,7 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-    def preference_params
+    def preference_paramss
     end
 
     def subscription_params

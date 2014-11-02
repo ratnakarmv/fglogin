@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
     if @subscription
       @preferences = @subscription.preferences
       @lunches = @subscription.lunch
-      @dinner = @subscription.dinner
+      @dinners = @subscription.dinner
     end
     
     @address = @customer.address

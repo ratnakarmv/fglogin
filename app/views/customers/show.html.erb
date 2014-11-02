@@ -104,6 +104,13 @@
       <%= button_to "Logout", destroy_customer_session_path, {method: :delete, class: "btn btn-danger pull-right"} %>
     </p>
     <h3> Your subscription </h3>
+
+    <p> Upcoming meal:
+        <% if @subscription.upcoming_meal.blank? %> <em>Undetermined yet</em>
+        <% else %><%= @subscription.upcoming_meal %>
+        <% end %>
+    </p>
+
     <% if @subscription %>
         <p> Preferred tracks: 
           <% @preferences.each do |pref| %>
@@ -112,22 +119,23 @@
         </p>
         <p> Lunches: 
             <% if @lunches.blank? %> <em>None ordered</em>
-            <% else %><%= @lunches %>
+            <% else %>
+                <% @lunches.each do |lunch| %>
+                    <%= lunch %>,
+                <% end %>
             <% end %>
           
         </p>
 
         <p> Dinners: 
             <% if @dinners.blank? %> <em>None ordered</em>
-            <% else %><%= @dinners %>
+            <% else %>
+                <% @dinners.each do |dinner| %>
+                    <%= dinner %>,<% end %>
             <% end %>
         </p>
 
-        <p> Upcoming meal:
-            <% if @subscription.upcoming_meal.blank? %> <em>Undetermined yet</em>
-            <% else %><%= @subscription.upcoming_meal %>
-            <% end %>
-        </p>
+        
     <%= link_to "Edit subscription", edit_subscription_path(@subscription) %>
     <% else %>
     <em>No subscription data</em>

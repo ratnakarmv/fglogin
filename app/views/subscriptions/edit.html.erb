@@ -14,13 +14,13 @@
   <h4> Lunch Delivery </h4>
   <label>
   <% @days.each do |day| %>
-      <%= check_box_tag('lunch[]', day) %><%= " #{day} " %>
+      <%= check_box_tag('lunch[]', day, @lunches.include?(day) ) %><%= " #{day} " %>
   <% end %>
   </label>
   <h4> Dinner Delivery </h4>
   <label>
   <% @days.each do |day| %>
-      <%= check_box_tag('dinner[]', day) %><%= " #{day} " %>
+      <%= check_box_tag('dinner[]', day, @dinners.include?(day)) %><%= " #{day} " %>
   <% end %>
   </label>
 
