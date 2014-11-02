@@ -1,0 +1,33 @@
+<div class="col-md-12">
+  <h3> subscription data </h3>
+  <%= form_for @subscription, url: subscription_path(@subscription), method: :patch do |f| %>
+
+  <h4> Preference </h4>
+  <label>
+    <% @tracks.each do |track| %>
+        <%= check_box_tag('preferences[]', track, @preferences.where(track: track).any? ) %><%= " #{track} " %>
+    <% end %>
+  </label>
+
+  <br>
+
+  <h4> Lunch Delivery </h4>
+  <label>
+  <% @days.each do |day| %>
+      <%= check_box_tag('lunch[]', day) %><%= " #{day} " %>
+  <% end %>
+  </label>
+  <h4> Dinner Delivery </h4>
+  <label>
+  <% @days.each do |day| %>
+      <%= check_box_tag('dinner[]', day) %><%= " #{day} " %>
+  <% end %>
+  </label>
+
+  
+
+  <br>
+  <%= submit_tag "Save changes", {class: 'btn btn-primary'} %>
+
+  <% end %>
+</div>
