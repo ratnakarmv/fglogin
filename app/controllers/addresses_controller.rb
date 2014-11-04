@@ -5,7 +5,7 @@ class AddressesController < ApplicationController
   end
 
   def new
-    @address = Address.new(customer: current_customer)
+    @address = Address.create(customer: current_customer)
     render 'edit'
   end
 
