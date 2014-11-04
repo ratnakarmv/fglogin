@@ -4,6 +4,7 @@ class CustomersController < ApplicationController
     @customer = current_customer
 
     @subscription = @customer.subscription
+    @subscription = Subscription.create(customer: @customer) unless @subscription
     if @subscription
       @preferences = @subscription.preferences
       @lunches = @subscription.lunch
@@ -11,6 +12,7 @@ class CustomersController < ApplicationController
     end
     
     @address = @customer.address
+
 
   end
 end

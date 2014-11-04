@@ -3,15 +3,21 @@ Rails.application.routes.draw do
 
 
 
+  post 'general/payment', to: 'general#payment', as: 'payment'
+
+  get 'general/subscription'
+
+  get 'general/home'
+
   devise_for :customers
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   root 'customers#show'
 
-  resources :addresses, only: [:edit, :update]
+  resources :addresses, only: [:new, :edit, :update]
 
-  resources :subscriptions, only: [:create, :edit, :update]
+  resources :subscriptions, only: [:create, :edit, :update, :new]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

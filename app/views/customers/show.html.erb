@@ -103,13 +103,17 @@
       Welcome, <%= @customer.email %> ! 
       <%= button_to "Logout", destroy_customer_session_path, {method: :delete, class: "btn btn-danger pull-right"} %>
     </p>
-    <h3> Your subscription </h3>
 
-    <p> Upcoming meal:
+    
+    <h4><p> Upcoming meal:
         <% if @subscription.upcoming_meal.blank? %> <em>Undetermined yet</em>
         <% else %><%= @subscription.upcoming_meal %>
         <% end %>
-    </p>
+    </p></h4>
+
+    <h3> Your subscription </h3>
+
+    
 
     <% if @subscription %>
         <p> Preferred tracks: 
@@ -147,8 +151,13 @@
       <%= "#{@address.phone} - #{@address.email}" %><br>
       <%= "#{@address.street_address}, #{@address.suite}" %><br>
       <%= "#{@address.city}, #{@address.state} #{@address.zip}" %><br>
+      <%= link_to "Edit address", edit_address_path(@address) %>
+    <% else %>
+      <em> No address defined </em><br><br>
+      <%= link_to "Edit address", new_address_path %>
+
     <% end %>
 
-    <%= link_to "Edit address", edit_address_path(@address) %>
+    
   </div>
 </div>

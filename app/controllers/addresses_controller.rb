@@ -4,6 +4,11 @@ class AddressesController < ApplicationController
     @address = Address.new(customer: current_customer) unless @address
   end
 
+  def new
+    @address = Address.new(customer: current_customer)
+    render 'edit'
+  end
+
   def update
     @address = current_customer.address
 

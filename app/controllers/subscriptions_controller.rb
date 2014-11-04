@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
 
   def edit
     @subscription = current_customer.subscription
+    @subscription = Subscription.create(customer: current_customer) unless @subscription
     @lunches = @subscription.lunch
     @lunches = [] unless @lunches
     @dinners = @subscription.dinner
@@ -30,10 +31,6 @@ class SubscriptionsController < ApplicationController
     subscription.dinner = params[:dinner]
     subscription.save
     end
-
-
-
-
 
     @pref_track_names.each do |name|    
       track = Track.find_by_name(name)
