@@ -9,6 +9,7 @@ class CustomersController < ApplicationController
       @preferences = @subscription.preferences
       @lunches = @subscription.lunch
       @dinners = @subscription.dinner
+      @extra_notes = @subscription.extra_notes
     end
     
     @address = @customer.address

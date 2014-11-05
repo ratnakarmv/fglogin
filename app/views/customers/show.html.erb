@@ -139,6 +139,12 @@
             <% end %>
         </p>
 
+        <p> Extra Notes:
+            <% if @extra_notes.blank? %> <em>No notes</em>
+            <% else %>
+                <%= @extra_notes %>
+            <% end %>
+        </p>
         
     <%= link_to "Edit subscription", edit_subscription_path(@subscription) %>
     <% else %>
