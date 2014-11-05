@@ -29,7 +29,8 @@ class SubscriptionsController < ApplicationController
 
     subscription.lunch = params[:lunch]
     subscription.dinner = params[:dinner]
-    subscription.extra_notes = params[:subscription][:extra_notes]
+    notes = params[:subscription][:extra_notes]
+    subscription.extra_notes = notes
     subscription.save
     end
 
