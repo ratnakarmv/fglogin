@@ -147,10 +147,21 @@
 
     <h3> Delivery address </h3> 
     <% if @address %>
-      <%= "#{@address.first_name} #{@address.last_name}" %><br><br>
-      <%= "#{@address.phone} - #{@address.email}" %><br>
-      <%= "#{@address.street_address}, #{@address.suite}" %><br>
-      <%= "#{@address.city}, #{@address.state} #{@address.zip}" %><br>
+      <%= "#{@address.first_name} #{@address.last_name}" %><br>
+      <i class="fa fa-phone"></i>
+      <% if @phone.blank? %>
+        <em> Unprovided </em>
+    <% else %>
+      <%= " #{@phone}"  %> &nbsp &nbsp
+    <% end %>
+    <i class="fa fa-envelope"></i>
+    <% if @address.email.blank? %>
+        <em> Unprovided </em>
+    <% else %>
+      <%= " #{@address.email}"  %>
+    <% end %><br><br>
+      <%= "#{@address.street_address} #{@address.suite}" %><br>
+      <%= "#{@address.city} #{@address.state} #{@address.zip}" %><br>
       <%= link_to "Edit address", edit_address_path(@address) %>
     <% else %>
       <em> No address defined </em><br><br>

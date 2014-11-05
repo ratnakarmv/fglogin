@@ -12,6 +12,7 @@ class CustomersController < ApplicationController
     end
     
     @address = @customer.address
+    @phone = @address.phone
 
 
   end
