@@ -125,7 +125,7 @@
             <% if @lunches.blank? %> <em>None ordered</em>
             <% else %>
                 <% @lunches.each do |lunch| %>
-                    <%= lunch %>,
+                    <%= lunch.capitalize %>,
                 <% end %>
             <% end %>
           
@@ -135,7 +135,7 @@
             <% if @dinners.blank? %> <em>None ordered</em>
             <% else %>
                 <% @dinners.each do |dinner| %>
-                    <%= dinner %>,<% end %>
+                    <%= dinner.capitalize %>,<% end %>
             <% end %>
         </p>
 
