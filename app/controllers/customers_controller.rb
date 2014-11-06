@@ -13,6 +13,7 @@ class CustomersController < ApplicationController
     end
     
     @address = @customer.address
+    @address = Address.create(customer: @customer)
     @phone = @address.phone
 
 
