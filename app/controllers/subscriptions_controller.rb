@@ -17,7 +17,7 @@ class SubscriptionsController < ApplicationController
   def update
     subscription = current_customer.subscription
 
-    @pref_track_names = params[:preferences]
+    @pref_track_names = params[:preferences] ? params[:preferences] : []
     @old_preferences = Preference.where(subscription: subscription)
     @deleted_preferences = Preference.none
 

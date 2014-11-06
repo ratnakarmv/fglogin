@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
     end
     
     @address = @customer.address
-    @address = Address.create(customer: @customer)
+    @address = Address.create(customer: @customer) unless @address
     @phone = @address.phone
 
 

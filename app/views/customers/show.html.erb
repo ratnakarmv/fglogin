@@ -117,9 +117,14 @@
 
     <% if @subscription %>
         <p> Preferred tracks: 
-          <% @preferences.each do |pref| %>
-            <%= pref.track %>,
-          <% end %>
+          
+          <% if @preferences.empty? %>
+          <em> Unset yet </em>
+          <% else %>
+              <% @preferences.each do |pref| %>
+                <%= pref.track %>,
+              <% end %>
+            <% end %>
         </p>
         <p> Lunches: 
             <% if @lunches.blank? %> <em>None ordered</em>
