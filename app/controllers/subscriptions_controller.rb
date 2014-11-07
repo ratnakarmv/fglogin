@@ -4,7 +4,6 @@ class SubscriptionsController < ApplicationController
 
   def edit
     @subscription = current_customer.subscription
-    @subscription = Subscription.create(customer: current_customer) unless @subscription
     @lunches = @subscription.lunch
     @lunches = [] unless @lunches
     @dinners = @subscription.dinner
@@ -15,7 +14,14 @@ class SubscriptionsController < ApplicationController
   end
 
   def update
-    subscription = current_customer.subscription
+    subscription = Subscription.find(params[:id])
+    redirect_to root_url if subscription.customer != current_customer
+
+    subscription.lunch = params[:lunch]
+    subscription.dinner = params[:dinner]
+    notes = params[:subscription][:extra_notes]
+    subscription.extra_notes = notes
+    subscription.save
 
     @pref_track_names = params[:preferences] ? params[:preferences] : []
     @old_preferences = Preference.where(subscription: subscription)
@@ -27,11 +33,7 @@ class SubscriptionsController < ApplicationController
         oldie.destroy
       end
 
-    subscription.lunch = params[:lunch]
-    subscription.dinner = params[:dinner]
-    notes = params[:subscription][:extra_notes]
-    subscription.extra_notes = notes
-    subscription.save
+
     end
 
     @pref_track_names.each do |name|    
