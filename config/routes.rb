@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
 
 
+  get 'management/subscription'
+
+  post 'management/subscription', to: 'management#update_meal', as: 'management_update_meal'
+
   post 'general/payment', to: 'general#payment', as: 'payment'
 
   get 'general/subscription'

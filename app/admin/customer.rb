@@ -39,5 +39,9 @@ permit_params :email, :password, :password_confirmation
   #   permitted
   # end
 
+  def to_s
+    email
+  end
+
 
 end

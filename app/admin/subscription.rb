@@ -1,4 +1,5 @@
 ActiveAdmin.register Subscription do
+  filter :customer
 
 
   # See permitted parameters documentation:
