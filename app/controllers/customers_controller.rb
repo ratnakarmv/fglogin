@@ -11,6 +11,7 @@ class CustomersController < ApplicationController
       @dinners = @subscription.dinner
       @extra_notes = @subscription.extra_notes
       @lunch_time = @subscription.lunch_time ? @subscription.lunch_time.strftime('%H:%M') : 'time unset'
+      @dinner_time = @subscription.dinner_time ? @subscription.dinner_time.strftime('%H:%M') : 'time unset'
     end
     
     @address = @customer.address

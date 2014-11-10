@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110201513) do
+ActiveRecord::Schema.define(version: 20141110211549) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20141110201513) do
     t.datetime "updated_at"
     t.text     "extra_notes"
     t.time     "lunch_time"
+    t.time     "dinner_time"
   end
 
   add_index "subscriptions", ["customer_id"], name: "index_subscriptions_on_customer_id"

@@ -25,7 +25,9 @@
   <% @days.each do |day| %>
       <%= check_box_tag('dinner[]', day, @dinners.include?(day)) %><%= " #{day} " %>
   <% end %>
-  </label>
+  </label><br>
+  <%= f.label :dinner_time %>: &nbsp
+  <%= f.time_select :dinner_time, {value: @subscription.dinner_time, minute_step: 15, default: {hour: '19', minute: '00'}} %>
 
   <h4> Extra Notes </h4>
   <%= f.text_area :extra_notes, {size: "60x8", placeholder:"Comments and extra requests"} %>
