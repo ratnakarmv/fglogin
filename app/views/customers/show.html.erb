@@ -133,6 +133,7 @@
                     <%= lunch.capitalize %>,
                 <% end %>
             <% end %>
+            <%= " @  #{@subscription.lunch_time.strftime("%H:%M")}" %>
           
         </p>
 

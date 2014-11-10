@@ -16,7 +16,10 @@
   <% @days.each do |day| %>
       <%= check_box_tag('lunch[]', day, @lunches.include?(day) ) %><%= " #{day} " %>
   <% end %>
-  </label>
+  </label><br>
+  <%= f.label :lunch_time %>: &nbsp
+  <%= f.time_select :lunch_time, {value: @subscription.lunch_time, minute_step: 15, default: {hour: '12', minute: '00'}} %>
+
   <h4> Dinner Delivery </h4>
   <label>
   <% @days.each do |day| %>

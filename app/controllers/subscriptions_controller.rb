@@ -20,9 +20,13 @@ class SubscriptionsController < ApplicationController
     subscription.lunch = params[:lunch]
     subscription.dinner = params[:dinner]
     notes = params[:subscription][:extra_notes]
-    subscription.extra_notes = notes
+    lunch_time = params[:subscription][:lunch_time]
+    # subscription.lunch_time = lunch_time
+    # subscription.extra_notes = notes
     subscription.save
 
+    subscription.update(subscription_params)
+    
     @pref_track_names = params[:preferences] ? params[:preferences] : []
     @old_preferences = Preference.where(subscription: subscription)
     @deleted_preferences = Preference.none
@@ -44,10 +48,11 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-    def preference_paramss
+    def preference_params
     end
 
     def subscription_params
+      params.require(:subscription).permit(:lunch_time, :extra_notes)
     end
 
 
