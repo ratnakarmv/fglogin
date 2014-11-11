@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-
+  get 'management', to: redirect('management/subscription')
   get 'management/subscription'
 
   post 'management/subscription', to: 'management#update_meal', as: 'management_update_meal'
