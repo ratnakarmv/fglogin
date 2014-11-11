@@ -10,7 +10,7 @@
             </button>
             <a class="navbar-brand page-scroll" href="http://foodgem.com/beta/" style="font-size: 60px;">FoodGem</a>
         </div>
-
+        <% unless params[:controller] == 'management' %>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" style="font-size: 12px;">
@@ -43,6 +43,7 @@
                 </li>-->
             </ul>
         </div>
+        <% end %>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->

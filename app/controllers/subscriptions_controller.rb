@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+  before_action :authenticate_customer!
 
   DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 

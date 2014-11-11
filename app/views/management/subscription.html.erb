@@ -1,4 +1,4 @@
-<h1>Subscription management</h1>
+<h1>Management panel</h1>
 
 <%= form_tag(management_subscription_path, {method: "get", class: "form-horizontal", role: "form"}) do %>
 <div class="form-group">
@@ -16,7 +16,10 @@
 <hr>
 
 <% if @subscription %>
-<p>Subscription for <%= @customer %></p>
+<p>Subscription for <b><%= @customer %></b><br>
+<%= link_to 'Edit customer account', management_edit_customer_path(@customer) %>
+</p>
+
 
 <p> Preferred tracks: 
           
@@ -34,6 +37,7 @@
             <% @lunches.each do |lunch| %>
                 <%= lunch.capitalize %>,
             <% end %>
+            <%= " @ #{@lunch_time}" %>
         <% end %>
       
     </p>
@@ -42,7 +46,8 @@
         <% if @dinners.blank? %> <em>None ordered</em>
         <% else %>
             <% @dinners.each do |dinner| %>
-                <%= dinner.capitalize %>,<% end %>
+                <%= dinner.capitalize %>,<% end %> 
+                <%= " @ #{@dinner_time}" %>
         <% end %>
     </p>
 
@@ -52,6 +57,7 @@
             <%= @extra_notes %>
         <% end %>
     </p>
+    <%= link_to 'Edit subscription', management_edit_subscription_path(@subscription) %>
   </p>
 
 <%= form_for @subscription, url: management_update_meal_path, html: {method: "post", class: "form-horizontal", role: "form"} do |f| %>

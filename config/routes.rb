@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   post 'management/subscription', to: 'management#update_meal', as: 'management_update_meal'
 
+  get 'management/edit_subscription/:id', to: 'management#edit_subscription', as: "management_edit_subscription"
+  patch 'management/edit_subscription/:id', to: 'management#update_subscription'
+
+  get 'management_edit_customer/:id', to: 'management#edit_customer', as: 'management_edit_customer'
+  patch 'management_edit_customer/:id', to: 'management#update_customer'
+
   post 'general/payment', to: 'general#payment', as: 'payment'
 
   get 'general/subscription'

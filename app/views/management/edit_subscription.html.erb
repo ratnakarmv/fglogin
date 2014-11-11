@@ -1,0 +1,43 @@
+<div class="col-md-12">
+  <h3> subscription for <%= @subscription %> </h3>
+  <%= form_for @subscription, url: management_edit_subscription_path(@subscription), method: :patch do |f| %>
+
+  <h4> Preference </h4>
+  <label>
+    <% @tracks.each do |track| %>
+        <%= check_box_tag('preferences[]', track, @preferences.where(track: track).any? ) %><%= " #{track} " %>
+    <% end %>
+  </label>
+
+  <br>
+
+  <h4> Lunch Delivery </h4>
+  <label>
+  <% @days.each do |day| %>
+      <%= check_box_tag('lunch[]', day, @lunches.include?(day) ) %><%= " #{day} " %>
+  <% end %>
+  </label><br>
+  <%= f.label :lunch_time %>: &nbsp
+  <%= f.time_select :lunch_time, {value: @subscription.lunch_time, minute_step: 15, default: {hour: '12', minute: '00'}} %>
+
+  <h4> Dinner Delivery </h4>
+  <label>
+  <% @days.each do |day| %>
+      <%= check_box_tag('dinner[]', day, @dinners.include?(day)) %><%= " #{day} " %>
+  <% end %>
+  </label><br>
+  <%= f.label :dinner_time %>: &nbsp
+  <%= f.time_select :dinner_time, {value: @subscription.dinner_time, minute_step: 15, default: {hour: '19', minute: '00'}} %>
+
+  <h4> Extra Notes </h4>
+  <%= f.text_area :extra_notes, {size: "60x8", placeholder:"Comments and extra requests"} %>
+
+
+
+  
+
+  <br>
+  <%= submit_tag "Save changes", {class: 'btn btn-primary'} %>
+
+  <% end %>
+</div>
