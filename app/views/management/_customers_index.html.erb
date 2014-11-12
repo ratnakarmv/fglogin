@@ -4,7 +4,7 @@
 <ul>
 <% @customers.each do |customer| %>
   <li>
-    <%= link_to customer, management_subscription_path(q: customer.email) %>
+    <%= "#{customer}  " %><%= link_to 'View', management_subscription_path(q: customer.email) %>
   </li>
 <% end %>
 <%= paginate @customers %> 
