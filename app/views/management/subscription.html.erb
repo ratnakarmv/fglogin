@@ -16,70 +16,15 @@
 <hr>
 
 <% if @subscription %>
-<p>Subscription for <b><%= @customer %></b><br>
-<%= link_to 'Edit customer account', management_edit_customer_path(@customer) %>
-</p>
-
-
-<p> Preferred tracks: 
-          
-      <% if @preferences.empty? %>
-      <em> Unset yet </em>
-      <% else %>
-          <% @preferences.each do |pref| %>
-            <%= pref.track %>,
-          <% end %>
-        <% end %>
-    </p>
-    <p> Lunches: 
-        <% if @lunches.blank? %> <em>None ordered</em>
-        <% else %>
-            <% @lunches.each do |lunch| %>
-                <%= lunch.capitalize %>,
-            <% end %>
-            <%= " @ #{@lunch_time}" %>
-        <% end %>
-      
-    </p>
-
-    <p> Dinners: 
-        <% if @dinners.blank? %> <em>None ordered</em>
-        <% else %>
-            <% @dinners.each do |dinner| %>
-                <%= dinner.capitalize %>,<% end %> 
-                <%= " @ #{@dinner_time}" %>
-        <% end %>
-    </p>
-
-    <p> Extra Notes:
-        <% if @extra_notes.blank? %> <em>No notes</em>
-        <% else %>
-            <%= @extra_notes %>
-        <% end %>
-    </p>
-    <%= link_to 'Edit subscription', management_edit_subscription_path(@subscription) %>
-  </p>
-
-<%= form_for @subscription, url: management_update_meal_path, html: {method: "post", class: "form-horizontal", role: "form"} do |f| %>
-<div class="form-group">
-  <%= hidden_field_tag(:id, @subscription.id) %>
-  <%= label_tag(:upcoming_meal, "Upcoming meal:", {class: "col-sm-2 control-label", for: "q"}) %>
-  <div class="col-sm-10">
-      <div class="input-group">
-        <%= f.text_field(:upcoming_meal, {class: "form-control", placeholder: "undefined"}) %>
-        <span class="input-group-btn">
-          <%= f.submit("Update", class: "btn btn-primary") %>
-        </span>
-      </div>
-    </div>
-</div>
-<% end %>
-
-
+  <%= render 'subscriptions_show' %>
 <% else %>
-  <% if @query %>
+  <% if @query.blank? %>
+    <%= render 'customers_index' %>
+  <% else %>
+    
     No data for <%= @query %>
   <% end %>
+
 <% end %>
   
 

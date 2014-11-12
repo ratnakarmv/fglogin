@@ -1,0 +1,11 @@
+<h3> All customers </h3>
+
+<%= paginate @customers %> 
+<ul>
+<% @customers.each do |customer| %>
+  <li>
+    <%= link_to customer, management_subscription_path(q: customer.email) %>
+  </li>
+<% end %>
+<%= paginate @customers %> 
+</ul>

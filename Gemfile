@@ -41,6 +41,8 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem "font-awesome-rails"
 
+gem 'kaminari'
+
 ruby "2.1.2"
 
 # Use ActiveModel has_secure_password

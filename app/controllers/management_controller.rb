@@ -5,7 +5,7 @@ class ManagementController < ApplicationController
   def subscription
     @query = params[:q]
 
-    if @query
+    unless @query.blank?
       @customer = Customer.find_by_email(@query)
       if @customer
         @subscription = Subscription.find_by_customer_id(@customer.id)
@@ -19,7 +19,8 @@ class ManagementController < ApplicationController
           @dinner_time = @subscription.dinner_time ? @subscription.dinner_time.strftime('%H,%M') : "default time" 
         end
       end
-
+    else
+      @customers = Customer.page(params[:page]).per(5)
 
     end
 
