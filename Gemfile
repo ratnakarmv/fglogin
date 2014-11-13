@@ -43,6 +43,8 @@ gem "font-awesome-rails"
 
 gem 'kaminari'
 
+gem 'mandrill-api'
+
 ruby "2.1.2"
 
 # Use ActiveModel has_secure_password

@@ -13,14 +13,29 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    require 'mandrill'
+    mandrill = Mandrill::API.new '7RZIKxnlpNkJrGW8sN5Utw'
     if resource.save
       id = resource.id
       address = Address.new(address_params)
       address.customer_id = id
-      address.save
-      subscription = Subscription.new()
-      subscription.customer_id = id
-      subscription.save
+      if address.save
+        subscription = Subscription.new()
+        subscription.customer_id = id
+        subscription.save
+
+        message = {"html" =>"<p>Hello, Welcome to foodgem</p>",
+          "text"=>"Hello, welcome to foodgem.",
+          "subject"=>"Welcome to foodgem",
+          "from_email"=> "noreply@foodgem.com",
+          "to" => [{"email"=>resource.email,
+            }],
+        }
+        sending = mandrill.messages.send message
+        puts sending
+      end
+
+
     end
   end
 
