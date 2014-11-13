@@ -20,7 +20,7 @@ class ManagementController < ApplicationController
         end
       end
     else
-      @customers = Customer.page(params[:page]).per(5)
+      @customers = Customer.page(params[:page]).per(25)
 
     end
 
