@@ -22,6 +22,11 @@
       <%= f.password_field :password_confirmation, {autocomplete: "off", class: 'form-control'} %>
     </div>
 
+    <div class="field">
+      <%= label_tag(:phone, "Phone number") %><br />
+      <%= text_field_tag :phone,'', {autocomplete: "off", class: 'form-control'} %>
+    </div>
+
     <div class="actions">
         <br><%= f.submit "Sign up", {class: 'btn btn-primary'} %>
 

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   get 'general/home'
 
-  devise_for :customers
+  devise_for :customers, controllers: { sessions: "customers/sessions", registrations: 'customers/registrations' }
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
