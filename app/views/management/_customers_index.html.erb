@@ -7,5 +7,6 @@
     <%= "#{customer}  " %><%= link_to 'View', management_subscription_path(q: customer.email) %>
   </li>
 <% end %>
-<%= paginate @customers %> 
+
 </ul>
+<%= paginate @customers %> 
