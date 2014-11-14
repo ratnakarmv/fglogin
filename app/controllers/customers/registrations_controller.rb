@@ -24,9 +24,20 @@ class Customers::RegistrationsController < Devise::RegistrationsController
         subscription.customer_id = id
         subscription.save
 
-        message = {"html" =>"<p>Hello, Welcome to foodgem</p>",
-          "text"=>"Hello, welcome to foodgem.",
-          "subject"=>"Welcome to foodgem",
+        message = {"html" =>"<p> Congratulations! <br><br>
+
+You’ve signed up for a subscription with FoodGem. Expect to have some of the most delicious food from the best restaurants in your area!<br><br>
+
+Please contact us at info@foodgem.com with any questions you have.<br><br>
+
+Cheers!</p>",
+          "text"=>"Congratulations! 
+You’ve signed up for a subscription with FoodGem. Expect to have some of the most delicious food from the best restaurants in your area!
+
+Please contact us at info@foodgem.com with any questions you have.
+
+Cheers!",
+          "subject"=>"Success! You Have Subscribed to FoodGem!",
           "from_email"=> "noreply@foodgem.com",
           "to" => [{"email"=>resource.email,
             }],
