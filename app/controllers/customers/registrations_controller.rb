@@ -12,42 +12,80 @@ class Customers::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
-    require 'mandrill'
-    mandrill = Mandrill::API.new '7RZIKxnlpNkJrGW8sN5Utw'
-    if resource.save
-      id = resource.id
-      address = Address.new(address_params)
-      address.customer_id = id
-      if address.save
+    build_resource(sign_up_params)
+    id = resource.id
+    @address = Address.new(address_params)
+    @address.customer = resource
+
+
+    resource_saved = resource.save
+    yield resource if block_given?
+    if resource_saved
+
+      require 'mandrill'
+      mandrill = Mandrill::API.new '7RZIKxnlpNkJrGW8sN5Utw'
+
+      if @address.save
         subscription = Subscription.new()
         subscription.customer_id = id
         subscription.save
 
         message = {"html" =>"<p> Congratulations! <br><br>
 
-You’ve signed up for a subscription with FoodGem. Expect to have some of the most delicious food from the best restaurants in your area!<br><br>
+          You’ve signed up for a subscription with FoodGem. Expect to have some of the most delicious food from the best restaurants in your area!<br><br>
 
-Please contact us at info@foodgem.com with any questions you have.<br><br>
+          Please contact us at info@foodgem.com with any questions you have.<br><br>
 
-Cheers!</p>",
-          "text"=>"Congratulations! 
-You’ve signed up for a subscription with FoodGem. Expect to have some of the most delicious food from the best restaurants in your area!
+          Cheers!</p>",
+                    "text"=>"Congratulations! 
+          You’ve signed up for a subscription with FoodGem. Expect to have some of the most delicious food from the best restaurants in your area!
 
-Please contact us at info@foodgem.com with any questions you have.
+          Please contact us at info@foodgem.com with any questions you have.
 
-Cheers!",
-          "subject"=>"Success! You Have Subscribed to FoodGem!",
-          "from_email"=> "noreply@foodgem.com",
-          "to" => [{"email"=>resource.email,
-            }],
+          Cheers!",
+        "subject"=>"Success! You Have Subscribed to FoodGem!",
+        "from_email"=> "noreply@foodgem.com",
+        "to" => [{"email"=>resource.email,
+          }],
         }
         sending = mandrill.messages.send message
         puts sending
       end
+      
 
 
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_flashing_format?
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      @validatable = devise_mapping.validatable?
+      if @validatable
+        @minimum_password_length = resource_class.password_length.min
+      end
+      respond_with resource
     end
+
+
+
+    # if resource.save
+
+    # super
+    
+
+    
+      
+      
+
+
+
+    # end
   end
 
   # GET /resource/edit
