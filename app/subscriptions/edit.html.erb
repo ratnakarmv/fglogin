@@ -1,0 +1,264 @@
+
+  <%= form_for @subscription, url: subscription_path(@subscription), method: :patch do |f| %>
+
+ 
+
+ 
+
+
+
+          <section id="portfolio" class="bg-light-gray preferences" style="padding: 50px 0 0 0;">
+
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-12 text-center">
+
+                    <h2 class="section-heading">Choose Preferences</h2>
+
+                    <h3 class="section-subheading text-muted" style="margin: 5px 0 30px 0;">Select a foodie track, but feel free to switch your preferences up to 24 hours before the delivery. </h3>
+
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                 <h4> Preference </h4>
+  <label>
+    <% @tracks.each do |track| %>
+        <%= check_box_tag('preferences[]', track, @preferences.where(track: track).any? ) %><%= " #{track} " %>
+    <% end %>
+  </label>
+
+  <br>
+
+  <h4> Lunch Delivery </h4>
+  <label>
+  <% @days.each do |day| %>
+      <%= check_box_tag('lunch[]', day, @lunches.include?(day) ) %><%= " #{day} " %>
+  <% end %>
+  </label><br>
+  <%= f.label :lunch_time %>: &nbsp
+  <%= f.time_select :lunch_time, {value: @subscription.lunch_time, minute_step: 15, default: {hour: '12', minute: '00'}} %>
+
+  <h4> Dinner Delivery </h4>
+  <label>
+  <% @days.each do |day| %>
+      <%= check_box_tag('dinner[]', day, @dinners.include?(day)) %><%= " #{day} " %>
+  <% end %>
+  </label><br>
+  <%= f.label :dinner_time %>: &nbsp
+  <%= f.time_select :dinner_time, {value: @subscription.dinner_time, minute_step: 15, default: {hour: '19', minute: '00'}} %>
+
+  <h4> Extra Notes </h4>
+  <%= f.text_area :extra_notes, {size: "60x8", placeholder:"Comments and extra requests"} %>
+
+
+
+  
+
+  <br>
+  <%= submit_tag "Save changes", {class: 'btn btn-primary'} %>
+
+              </div>
+            </div>
+
+            <div class="row">
+
+                <div class="goarea col-md-4 col-sm-6 portfolio-item">
+
+                    <a class="portfolio-link selecttrack" data-toggle="modal">
+
+                        <div class="portfolio-hover">
+
+                            <div class="portfolio-hover-content">
+
+                                <i class="fa fa-plus fa-3x"></i>
+
+                            </div>
+
+                        </div>
+
+                        <img src="http://s4.favim.com/orig/50/club-delicious-food-lunch-sanwich-Favim.com-460453.jpg" class="img-responsive" alt="">
+
+                    </a>
+
+                    <div class="portfolio-caption">
+
+                        <h4>Popular Track</h4>
+
+                        <p class="text-muted">The most popular tasty dishes!</p><a href="./rating.html" class="starmargin" style="display: block;font-family: FontAwesome; margin:0 auto; text-decoration: none;"><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star-half-full starclr"></i> [182 <i class="fa fa-group"></i>]<br></a>
+
+                    </div>
+
+                </div>
+
+                <div class="goarea col-md-4 col-sm-6 portfolio-item">
+
+                    <a class="portfolio-link selecttrack" data-toggle="modal">
+
+                        <div class="portfolio-hover">
+
+                            <div class="portfolio-hover-content">
+
+                                <i class="fa fa-plus fa-3x"></i>
+
+                            </div>
+
+                        </div>
+
+                        <img src="http://www.vegkitchen.com/wp-content/uploads/2012/08/Seitan-avocado-wrap.jpg" class="img-responsive" alt="">
+
+                    </a>
+
+                    <div class="portfolio-caption">
+
+                        <h4>Vegetarian Track</h4>
+
+                        <p class="text-muted">Pastas, Salads, Casseroles</p>
+
+                        <a href="./rating.html" class="starmargin" style="display: block;font-family: FontAwesome; margin:0 auto; text-decoration: none;"><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star-o starclr"></i> [78 <i class="fa fa-group"></i>]<br></a>
+
+                    </div>
+
+                </div>
+
+                <div class="goarea col-md-4 col-sm-6 portfolio-item">
+
+                    <a class="portfolio-link selecttrack" data-toggle="modal">
+
+                        <div class="portfolio-hover">
+
+                            <div class="portfolio-hover-content">
+
+                                <i class="fa fa-plus fa-3x"></i>
+
+                            </div>
+
+                        </div>
+
+                        <img src="http://julievr.wpengine.netdna-cdn.com/wp-content/uploads/2011/08/Simons-chickpea-dish.jpg" class="img-responsive" alt="">
+
+                    </a>
+
+                    <div class="portfolio-caption">
+
+                        <h4>Vegan Track</h4>
+
+                        <p class="text-muted">Chickpeas, Curry, Tofu</p>
+
+                        <a href="./rating.html" class="starmargin" style="display: block;font-family: FontAwesome; margin:0 auto; text-decoration: none;"><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star-o starclr"></i> [26 <i class="fa fa-group"></i>]<br></a>
+
+                    </div>
+
+                </div>
+
+                <div class="goarea col-md-4 col-sm-6 portfolio-item">
+
+                    <a class="portfolio-link selecttrack" data-toggle="modal">
+
+                        <div class="portfolio-hover">
+
+                            <div class="portfolio-hover-content">
+
+                                <i class="fa fa-plus fa-3x"></i>
+
+                            </div>
+
+                        </div>
+
+                        <img src="http://www.abc.net.au/news/image/853746-3x2-940x627.jpg" class="img-responsive" alt="">
+
+                    </a>
+
+                    <div class="portfolio-caption">
+
+                        <h4>Meat Lovers</h4>
+
+                        <p class="text-muted">Burgers, Cheese-Steaks, Sausage</p>
+
+                        <a href="./rating.html" class="starmargin" style="display: block;font-family: FontAwesome; margin:0 auto; text-decoration: none;"><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i> [116 <i class="fa fa-group"></i>]<br></a>
+
+                    </div>
+
+                </div>
+
+                <div class="goarea col-md-4 col-sm-6 portfolio-item">
+
+                    <a class="portfolio-link selecttrack" data-toggle="modal">
+
+                        <div class="portfolio-hover">
+
+                            <div class="portfolio-hover-content">
+
+                                <i class="fa fa-plus fa-3x"></i>
+
+                            </div>
+
+                        </div>
+
+                        <img src="http://1.bp.blogspot.com/_0DNo0eySp-8/TSL7oN98tFI/AAAAAAAAAQE/6Y6M6fvxXqM/s400/sushi-india-japanese-cuisine.jpg" class="img-responsive" alt="">
+
+                    </a>
+
+                    <div class="portfolio-caption">
+
+                        <h4> Seafood Track</h4>
+
+                        <p class="text-muted">Sushi, Shrimp, Lobster-Rolls</p>
+
+                        <a href="./rating.html" class="starmargin" style="display: block;font-family: FontAwesome; margin:0 auto; text-decoration: none;"><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star-half-full starclr"></i><i class="fa fa-star-o starclr"></i> [93 <i class="fa fa-group"></i>]<br></a>
+
+                    </div>
+
+                </div>
+
+                <div class="goarea col-md-4 col-sm-6 portfolio-item">
+
+                    <a class="portfolio-link selecttrack" data-toggle="modal">
+
+                        <div class="portfolio-hover">
+
+                            <div class="portfolio-hover-content">
+
+                                <i class="fa fa-plus fa-3x"></i>
+
+                            </div>
+
+                        </div>
+
+                        <img src="http://taylormarshall.com/wp-content/uploads/2013/12/Mexican-Food-for-Guadalupe.jpg" class="img-responsive" alt="">
+
+                    </a>
+
+                    <div class="goarea portfolio-caption">
+
+                        <h4> International Track</h4>
+
+                        <p class="text-muted">Mexican, Chinese, Indian, etc</p>
+
+                        <a href="./rating.html" class="starmargin" style="display: block;font-family: FontAwesome; margin:0 auto; text-decoration: none;"><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star starclr"></i><i class="fa fa-star-half-full starclr"></i> [145 <i class="fa fa-group"></i>]<br></a>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <br><br>
+
+            
+
+        </div>
+
+    </section>
+
+
+
+ <% end %>
